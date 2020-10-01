@@ -2,7 +2,7 @@
 
 # About
 
-Ordered reduction of a number to zero or other number by removing first or last digit in sequence.
+Ordered reduction of a number to zero by removing first or last digit in sequence.
 
 # Unity Version: 
 
