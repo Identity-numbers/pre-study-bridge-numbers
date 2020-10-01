@@ -2,13 +2,13 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+/pre-study-bridge-numbers/[Ll]ibrary/
+/pre-study-bridge-numbers/[Tt]emp/
+/pre-study-bridge-numbers/[Oo]bj/
+/pre-study-bridge-numbers/[Bb]uild/
+/pre-study-bridge-numbers/[Bb]uilds/
+/pre-study-bridge-numbers/[Ll]ogs/
+/pre-study-bridge-numbers/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
