@@ -84,7 +84,7 @@ public class MainModel : MonoBehaviour
                     break;
                 }
 
-                if (attackingVal > firstVal)
+                while (attackingVal > firstVal)
                 {
                     attackingVal /= 10;
                 }
