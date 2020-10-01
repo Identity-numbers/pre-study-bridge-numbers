@@ -1378,7 +1378,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'About:'
+  m_Text: 'About: cut away digits'
 --- !u!222 &1491178030
 CanvasRenderer:
   m_ObjectHideFlags: 0
