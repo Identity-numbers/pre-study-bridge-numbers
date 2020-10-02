@@ -17,4 +17,5 @@ public class CalcObj : MonoBehaviour
     //did it hit zero? perhaps remainder tells?
     public bool DidHitZero;
 
+    public string calculationRecord;
 }

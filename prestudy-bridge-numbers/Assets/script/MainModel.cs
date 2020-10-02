@@ -38,7 +38,9 @@ public class MainModel : MonoBehaviour
             int firstVal = i + 1;
             int attackingVal = firstVal / 10;
             calcObj.attackAtThisValue = firstVal;
+            calcObj.calculationRecord = firstVal.ToString();
             
+            ListCalcObjects.Add(calcObj);
 
             int iter = 0;
 
@@ -48,9 +50,6 @@ public class MainModel : MonoBehaviour
                 calcObj.DidHitZero = false;
                 calcObj.remainder = firstVal;
                 calcObj.requiredNmbOfOperations = 0;
-
-                ListCalcObjects.Add(calcObj);
-
                 //break loop and continue with next value
                 continue;
             }
