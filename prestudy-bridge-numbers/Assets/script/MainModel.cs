@@ -63,6 +63,8 @@ public class MainModel : MonoBehaviour
                 firstVal -= attackingVal;
                 //Debug.Log("firstval: " + firstVal + " attackingval; " + attackingVal);
 
+                calcObj.calculationRecord += "-" + attackingVal.ToString();
+
                 if (firstVal == 0)
                 {
                     Debug.Log("did hit zero");
@@ -79,7 +81,8 @@ public class MainModel : MonoBehaviour
                     //did overshoot
                     calcObj.DidHitZero = false;
                     calcObj.remainder = firstVal + attackingVal;
-                    calcObj.requiredNmbOfOperations = iter;
+                    calcObj.requiredNmbOfOperations = iter-1;
+                    calcObj.calculationRecord += "+" + attackingVal.ToString();
                     break;
                 }
 

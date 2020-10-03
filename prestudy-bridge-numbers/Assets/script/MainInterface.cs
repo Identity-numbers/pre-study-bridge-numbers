@@ -37,6 +37,11 @@ public class MainInterface : MonoBehaviour
         {
             AddToOutput(calcObjs[i].DidHitZero + ", ", false);
         }
+        AddToOutput("\n\nSubtraction chain:  ", true);
+        for (int i = 0; i < calcObjs.Count; i++)
+        {
+            AddToOutput(calcObjs[i].calculationRecord + "\n", true);
+        }
     }
 
     private void AddToOutput(string str, bool linebreak = true)
