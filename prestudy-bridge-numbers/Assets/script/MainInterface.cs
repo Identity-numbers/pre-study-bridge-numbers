@@ -44,7 +44,7 @@ public class MainInterface : MonoBehaviour
         }
     }
 
-    private void AddToOutput(string str, bool linebreak = true)
+    public void AddToOutput(string str, bool linebreak = true)
     {
         if (linebreak)
         {
@@ -61,11 +61,11 @@ public class MainInterface : MonoBehaviour
         input_OutputField.text = "";
     }
 
-    public int[] ReturnStartAndStopValueUpward()
+    public long[] ReturnStartAndStopValueUpward()
     {
         //check if startvalue is larger than stopvalue, stop or not?
-        int startVal = int.Parse(input_StartValue.text);
-        int stopVal = int.Parse(input_StopValue.text);
+        long startVal = long.Parse(input_StartValue.text);
+        long stopVal = long.Parse(input_StopValue.text);
 
         //check input
         if (startVal < 0) { startVal = 0; }
@@ -75,6 +75,6 @@ public class MainInterface : MonoBehaviour
         input_StartValue.text = startVal.ToString();
         input_StopValue.text = stopVal.ToString();
 
-        return new int[] { startVal, stopVal };
+        return new long[] { startVal, stopVal };
     }
 }

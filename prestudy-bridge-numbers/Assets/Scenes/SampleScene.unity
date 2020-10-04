@@ -1761,7 +1761,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\x03Linus Jarbo, Hugo Angulo, 2020\n"
+  m_Text: "\x03Linus Jarbo, Hugo Angulo, 2020\nVersion 1.0.0"
 --- !u!222 &2057190241
 CanvasRenderer:
   m_ObjectHideFlags: 0

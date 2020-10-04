@@ -6,13 +6,13 @@ using UnityEngine;
 public class CalcObj : MonoBehaviour
 {
     //attacking this value
-    public int attackAtThisValue;
+    public long attackAtThisValue;
 
     //if not hitting zero, what was left?
-    public int remainder;
+    public long remainder;
 
     //how many times did it take to attack the number?
-    public int requiredNmbOfOperations;
+    public long requiredNmbOfOperations;
 
     //did it hit zero? perhaps remainder tells?
     public bool DidHitZero;

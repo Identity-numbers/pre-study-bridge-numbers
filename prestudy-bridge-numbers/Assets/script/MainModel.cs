@@ -23,26 +23,33 @@ public class MainModel : MonoBehaviour
         CleanCalcObj();
 
         //get start och stop value, validated in mainInterface
-        int[] intStartStop = mainInterface.ReturnStartAndStopValueUpward();
-        int startV = intStartStop[0];
-        int stopV = intStartStop[1];
+        long[] intStartStop = mainInterface.ReturnStartAndStopValueUpward();
+        long startV = intStartStop[0];
+        long stopV = intStartStop[1];
+
+        if (stopV - startV > 200)
+        {
+            //safety
+            stopV = startV+200;
+            mainInterface.AddToOutput("Safety is on, only doing 200 iterations.");
+        }
 
         //loop through start and stop value
-        for (int i = startV - 1; i < stopV; i++)
+        for (long i = startV - 1; i < stopV; i++)
         {
             //setup CalcObj
             GameObject go = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
             CalcObj calcObj = go.GetComponent(typeof(CalcObj)) as CalcObj;
 
             //current value to chop down
-            int firstVal = i + 1;
-            int attackingVal = firstVal / 10;
+            long firstVal = i + 1;
+            long attackingVal = firstVal / 10;
             calcObj.attackAtThisValue = firstVal;
             calcObj.calculationRecord = firstVal.ToString();
-            
+
             ListCalcObjects.Add(calcObj);
 
-            int iter = 0;
+            long iter = 0;
 
             //nothing to attack with, continue;
             if (attackingVal == 0)
@@ -54,7 +61,7 @@ public class MainModel : MonoBehaviour
                 continue;
             }
 
-            int escaper = 0;
+            long escaper = 0;
             //attacking value
             while (true)
             {
@@ -81,7 +88,7 @@ public class MainModel : MonoBehaviour
                     //did overshoot
                     calcObj.DidHitZero = false;
                     calcObj.remainder = firstVal + attackingVal;
-                    calcObj.requiredNmbOfOperations = iter-1;
+                    calcObj.requiredNmbOfOperations = iter - 1;
                     calcObj.calculationRecord += "+" + attackingVal.ToString();
                     break;
                 }
