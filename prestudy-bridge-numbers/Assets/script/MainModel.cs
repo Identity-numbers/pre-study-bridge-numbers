@@ -17,7 +17,25 @@ public class MainModel : MonoBehaviour
         }
         ListCalcObjects.Clear();
     }
-    public void CalcUpward()
+    public void rightCalc()
+    {
+        //clean up object and list
+        CleanCalcObj();
+
+        //get start and stop value
+        long[] intStartStop = mainInterface.ReturnR_StartAndStopValueUpward();
+        long startV = intStartStop[0];
+        long stopV = intStartStop[1];
+
+        if (stopV - startV > 200)
+        {
+            //safety
+            stopV = startV + 200;
+            mainInterface.AddToOutput("Safety is on, only doing 200 iterations for .");
+        }
+    }
+
+    public void leftCalc()
     {
         //clean up object and list
         CleanCalcObj();
@@ -30,7 +48,7 @@ public class MainModel : MonoBehaviour
         if (stopV - startV > 200)
         {
             //safety
-            stopV = startV+200;
+            stopV = startV + 200;
             mainInterface.AddToOutput("Safety is on, only doing 200 iterations.");
         }
 
@@ -118,6 +136,6 @@ public class MainModel : MonoBehaviour
             //Debug.Log(iter);
         }
 
-        mainInterface.AddOutputUpwardCalc(ListCalcObjects);
+        mainInterface.AddOutputLeftCalc(ListCalcObjects);
     }
 }

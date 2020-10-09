@@ -8,9 +8,16 @@ public class Main : MonoBehaviour
     public MainInterface mainInterface;
     public MainModel mainModel;
 
-    //Button
-    public void UpwardCalculation()
+    //Button right calc
+    public void rightCalculation()
     {
-        mainModel.CalcUpward();
+        mainModel.leftCalc();
     }
+
+    //button left calc
+    public void leftCalculation()
+    {
+        mainModel.rightCalc();
+    }
+
 }
