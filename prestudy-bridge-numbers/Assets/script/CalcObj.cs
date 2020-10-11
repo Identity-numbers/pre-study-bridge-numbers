@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class CalcObj : MonoBehaviour
 {
+    //kind of calculation
+    public string kindOfCalculation;
     //attacking this value
     public long attackAtThisValue;
 

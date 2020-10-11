@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class MainInterface : MonoBehaviour
 {
+    //left inout
     public InputField input_StartValue;
     public InputField input_StopValue;
+
+    //right input
+    public InputField inputR_StartValue;
+    public InputField inputR_StopValue;
+
     public InputField input_OutputField;
 
-    public void AddOutputUpwardCalc(List<CalcObj> calcObjs)
+    public void AddOutputLeftCalc(List<CalcObj> calcObjs)
     {
         //clean output
         CleanOutputField();
@@ -74,6 +80,22 @@ public class MainInterface : MonoBehaviour
         //re-add checked input
         input_StartValue.text = startVal.ToString();
         input_StopValue.text = stopVal.ToString();
+
+        return new long[] { startVal, stopVal };
+    }
+    public long[] ReturnR_StartAndStopValueUpward()
+    {
+        //check if startvalue is larger than stopvalue, stop or not?
+        long startVal = long.Parse(inputR_StartValue.text);
+        long stopVal = long.Parse(inputR_StopValue.text);
+
+        //check input
+        if (startVal < 0) { startVal = 0; }
+        if (startVal >= stopVal) { stopVal = startVal + 1; }
+
+        //re-add checked input
+        inputR_StartValue.text = startVal.ToString();
+        inputR_StopValue.text = stopVal.ToString();
 
         return new long[] { startVal, stopVal };
     }
