@@ -11,13 +11,13 @@ public class Main : MonoBehaviour
     //Button right calc
     public void rightCalculation()
     {
-        mainModel.leftCalc();
+        mainModel.bottomCalc();
     }
 
     //button left calc
     public void leftCalculation()
     {
-        mainModel.rightCalc();
+        mainModel.topCalc();
     }
 
 }

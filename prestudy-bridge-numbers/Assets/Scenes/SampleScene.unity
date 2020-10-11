@@ -357,8 +357,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1560001433}
-        m_MethodName: UpwardCalculation
+      - m_Target: {fileID: 1269459981}
+        m_MethodName: bottomCalc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1357,8 +1357,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1560001433}
-        m_MethodName: UpwardCalculation
+      - m_Target: {fileID: 1269459981}
+        m_MethodName: topCalc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1946,7 +1946,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Right Calc.
+  m_Text: Top Calc.
 --- !u!222 &1249306079
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2850,7 +2850,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Left Calc.
+  m_Text: Bottom Calc.
 --- !u!222 &2141400177
 CanvasRenderer:
   m_ObjectHideFlags: 0
