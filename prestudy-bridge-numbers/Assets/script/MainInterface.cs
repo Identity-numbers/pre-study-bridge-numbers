@@ -46,6 +46,7 @@ public class MainInterface : MonoBehaviour
         AddToOutput("\n\nSubtraction chain:  ", true);
         for (int i = 0; i < calcObjs.Count; i++)
         {
+            AddToOutput("Did hit zero = " + calcObjs[i].DidHitZero, true);
             AddToOutput(calcObjs[i].calculationRecord + "\n", true);
         }
     }
@@ -67,7 +68,7 @@ public class MainInterface : MonoBehaviour
         input_OutputField.text = "";
     }
 
-    public long[] ReturnStartAndStopValueUpward()
+    public long[] ReturnR_StartAndStopBottomCalc()
     {
         //check if startvalue is larger than stopvalue, stop or not?
         long startVal = long.Parse(input_StartValue.text);
@@ -83,7 +84,7 @@ public class MainInterface : MonoBehaviour
 
         return new long[] { startVal, stopVal };
     }
-    public long[] ReturnR_StartAndStopValueUpward()
+    public long[] ReturnStartAndStopTopCalc()
     {
         //check if startvalue is larger than stopvalue, stop or not?
         long startVal = long.Parse(inputR_StartValue.text);
@@ -96,6 +97,8 @@ public class MainInterface : MonoBehaviour
         //re-add checked input
         inputR_StartValue.text = startVal.ToString();
         inputR_StopValue.text = stopVal.ToString();
+
+        Debug.Log("startVal: " + startVal);
 
         return new long[] { startVal, stopVal };
     }

@@ -38,7 +38,7 @@ public class MainModel : MonoBehaviour
         CleanCalcObj();
 
         //get start and stop value
-        long[] intStartStop = mainInterface.ReturnR_StartAndStopValueUpward();
+        long[] intStartStop = mainInterface.ReturnStartAndStopTopCalc();
         long startV = intStartStop[0];
         long stopV = intStartStop[1];
 
@@ -52,8 +52,6 @@ public class MainModel : MonoBehaviour
         //loop through start and stop value
         for (long i = startV - 1; i < stopV; i++)
         {
-
-
             //setup CalcObj
             GameObject go = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
             CalcObj calcObj = go.GetComponent(typeof(CalcObj)) as CalcObj;
@@ -150,7 +148,7 @@ public class MainModel : MonoBehaviour
         CleanCalcObj();
 
         //get start och stop value, validated in mainInterface
-        long[] intStartStop = mainInterface.ReturnStartAndStopValueUpward();
+        long[] intStartStop = mainInterface.ReturnR_StartAndStopBottomCalc();
         long startV = intStartStop[0];
         long stopV = intStartStop[1];
 
