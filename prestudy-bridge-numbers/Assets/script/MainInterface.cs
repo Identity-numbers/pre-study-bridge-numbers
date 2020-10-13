@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class MainInterface : MonoBehaviour
 {
-    //left inout
+    //Bottom calc input
     public InputField input_StartValue;
     public InputField input_StopValue;
 
-    //right input
+    //Top calc input
     public InputField inputR_StartValue;
     public InputField inputR_StopValue;
 
+    //Single Bottom Calc
+    public InputField inputSBC_StartValue;
+    public InputField inputSBC_StopValue;
+
+    //Single Top Calc
+    public InputField inputSTC_StartValue;
+    public InputField inputSTC_StopValue;
     public InputField input_OutputField;
 
     public void AddOutputLeftCalc(List<CalcObj> calcObjs)
@@ -50,7 +57,6 @@ public class MainInterface : MonoBehaviour
             AddToOutput(calcObjs[i].calculationRecord + "\n", true);
         }
     }
-
     public void AddToOutput(string str, bool linebreak = true)
     {
         if (linebreak)
@@ -62,12 +68,10 @@ public class MainInterface : MonoBehaviour
             input_OutputField.text += str;
         }
     }
-
     private void CleanOutputField()
     {
         input_OutputField.text = "";
     }
-
     public long[] ReturnR_StartAndStopBottomCalc()
     {
         //check if startvalue is larger than stopvalue, stop or not?
@@ -102,4 +106,37 @@ public class MainInterface : MonoBehaviour
 
         return new long[] { startVal, stopVal };
     }
+    public long[] ReturnSingleBottomCalcValues()
+    {
+                //check if startvalue is larger than stopvalue, stop or not?
+        long startVal = long.Parse(inputSBC_StartValue.text);
+        long stopVal = long.Parse(inputSBC_StopValue.text);
+
+        //check input
+        //if (startVal < 0) { startVal = 0; }
+        //if (startVal >= stopVal) { stopVal = startVal + 1; }
+
+        //re-add checked input, do I need to do this? in this case
+        inputSBC_StartValue.text = startVal.ToString();
+        inputSBC_StopValue.text = stopVal.ToString();
+
+        return new long[] { startVal, stopVal };
+    }
+    public long[] ReturnSingleTopCalcValues()
+    {
+                        //check if startvalue is larger than stopvalue, stop or not?
+        long startVal = long.Parse(inputSTC_StartValue.text);
+        long stopVal = long.Parse(inputSTC_StopValue.text);
+
+        //check input
+        //if (startVal < 0) { startVal = 0; }
+        //if (startVal >= stopVal) { stopVal = startVal + 1; }
+
+        //re-add checked input
+        inputSTC_StartValue.text = startVal.ToString();
+        inputSTC_StopValue.text = stopVal.ToString();
+
+        return new long[] { startVal, stopVal };
+    }
+
 }

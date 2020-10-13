@@ -6,7 +6,6 @@ public class MainModel : MonoBehaviour
 {
     public MainInterface mainInterface;
     public GameObject prefab;
-
     public List<CalcObj> ListCalcObjects = new List<CalcObj>();
 
     private void CleanCalcObj()
@@ -141,7 +140,6 @@ public class MainModel : MonoBehaviour
         mainInterface.AddOutputLeftCalc(ListCalcObjects);
 
     }
-
     public void bottomCalc()
     {
         //clean up object and list
@@ -245,5 +243,192 @@ public class MainModel : MonoBehaviour
         }
 
         mainInterface.AddOutputLeftCalc(ListCalcObjects);
+    }
+
+    public void singleBottomCalc()
+    {
+        //clean up object and list
+        CleanCalcObj();
+
+        //get start och stop value, validated in mainInterface
+        long[] intStartStop = mainInterface.ReturnSingleBottomCalcValues();
+        long startV = intStartStop[0];
+        long stopV = intStartStop[1];
+
+        //setup CalcObj
+        GameObject go = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+        CalcObj calcObj = go.GetComponent(typeof(CalcObj)) as CalcObj;
+
+        //current value to chop down
+        long firstVal = startV;
+        long attackingVal = stopV;
+
+        calcObj.kindOfCalculation = "reducing from bottom";
+        calcObj.attackAtThisValue = firstVal;
+        calcObj.calculationRecord = firstVal.ToString();
+
+        ListCalcObjects.Add(calcObj);
+
+        long iter = 0;
+
+        //nothing to attack with, continue;
+        if (attackingVal == 0)
+        {
+            calcObj.DidHitZero = false;
+            calcObj.remainder = firstVal;
+            calcObj.requiredNmbOfOperations = 0;
+            mainInterface.AddToOutput("AttackingValue = 0");
+            return;
+        }
+
+        long escaper = 0;
+        //attacking value
+        while (true)
+        {
+            iter++;
+
+            firstVal -= attackingVal;
+            //Debug.Log("firstval: " + firstVal + " attackingval; " + attackingVal);
+
+            calcObj.calculationRecord += "-" + attackingVal.ToString();
+
+            if (firstVal == 0)
+            {
+                Debug.Log("did hit zero");
+                //did hit zero
+                calcObj.DidHitZero = true;
+                calcObj.remainder = firstVal;
+                calcObj.requiredNmbOfOperations = iter;
+                break;
+            }
+
+            if (firstVal < 0)
+            {
+                Debug.Log("did overshoot");
+                //did overshoot
+                calcObj.DidHitZero = false;
+                calcObj.remainder = firstVal + attackingVal;
+                calcObj.requiredNmbOfOperations = iter - 1;
+                calcObj.calculationRecord += "+" + attackingVal.ToString();
+                break;
+            }
+
+            while (attackingVal > firstVal)
+            {
+                attackingVal /= 10;
+            }
+
+            if (attackingVal == 0)
+            {
+                //nothing more to attack with
+                calcObj.DidHitZero = false;
+                calcObj.remainder = firstVal;
+                calcObj.requiredNmbOfOperations = iter;
+                break;
+            }
+
+            escaper++;
+            if (escaper > 1000)
+            {
+                Debug.Log("did use escaper for this while loop");
+                break;
+            }
+        }
+
+        mainInterface.AddOutputLeftCalc(ListCalcObjects);
+    }
+
+    public void singleTopCalc()
+    {
+        //clean up object and list
+        CleanCalcObj();
+
+        //get start och stop value, validated in mainInterface
+        long[] intStartStop = mainInterface.ReturnSingleTopCalcValues();
+        long startV = intStartStop[0];
+        long stopV = intStartStop[1];
+
+        //setup CalcObj
+        GameObject go = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+        CalcObj calcObj = go.GetComponent(typeof(CalcObj)) as CalcObj;
+
+        //current value to chop down
+        long firstVal = startV;
+        long attackingVal = stopV;
+
+        calcObj.kindOfCalculation = "reducing from top";
+        calcObj.attackAtThisValue = firstVal;
+        calcObj.calculationRecord = firstVal.ToString();
+
+        ListCalcObjects.Add(calcObj);
+
+        long iter = 0;
+
+        //nothing to attack with, continue;
+        if (attackingVal == 0)
+        {
+            calcObj.DidHitZero = false;
+            calcObj.remainder = firstVal;
+            calcObj.requiredNmbOfOperations = 0;
+            mainInterface.AddToOutput("AttackingValue = 0");
+            return;
+        }
+
+        long escaper = 0;
+        //attacking value
+        while (true)
+        {
+            iter++;
+
+            firstVal -= attackingVal;
+            //Debug.Log("firstval: " + firstVal + " attackingval; " + attackingVal);
+
+            calcObj.calculationRecord += "-" + attackingVal.ToString();
+
+            if (firstVal == 0)
+            {
+                Debug.Log("did hit zero");
+                //did hit zero
+                calcObj.DidHitZero = true;
+                calcObj.remainder = firstVal;
+                calcObj.requiredNmbOfOperations = iter;
+                break;
+            }
+
+            if (firstVal < 0)
+            {
+                Debug.Log("did overshoot");
+                //did overshoot
+                calcObj.DidHitZero = false;
+                calcObj.remainder = firstVal + attackingVal;
+                calcObj.requiredNmbOfOperations = iter - 1;
+                calcObj.calculationRecord += "+" + attackingVal.ToString();
+                break;
+            }
+
+            while (attackingVal > firstVal)
+            {
+                attackingVal = reduceNumberFromTop(attackingVal);
+            }
+
+            if (attackingVal == 0)
+            {
+                //nothing more to attack with
+                calcObj.DidHitZero = false;
+                calcObj.remainder = firstVal;
+                calcObj.requiredNmbOfOperations = iter;
+                break;
+            }
+
+            escaper++;
+            if (escaper > 1000)
+            {
+                Debug.Log("did use escaper for this while loop");
+                break;
+            }
+        }
+
+        mainInterface.AddOutputLeftCalc(ListCalcObjects);
+
     }
 }
