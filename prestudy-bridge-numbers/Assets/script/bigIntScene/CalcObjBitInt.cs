@@ -9,6 +9,8 @@ public class CalcObjBitInt : MonoBehaviour
     public string kindOfCalculation;
     //attacking this value
     public BigInteger attackAtThisValue;
+    //length of original value
+    public int numberOfDigits;
     //if not hitting zero, what was left?
     public BigInteger remainder;
     //how many times did it take to attack the number?

@@ -20,35 +20,114 @@ public class MainBigIntInterface : MonoBehaviour
         //clean output
         CleanOutputField();
 
-/*         //add what the information presented is about
-        AddToOutput("Upward Calculation ======================= ");
-        AddToOutput("\nRun on following numbers: ");
-        for (int i = 0; i < calcObjs.Count; i++)
+        //add what the information presented is about
+        AddToOutput("TopCalc Calculation ======================= ");
+                AddToOutput("\n==================:: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
         {
-            AddToOutput(calcObjs[i].attackAtThisValue + ", ", false);
+
+                AddToOutput(calcObjBitInt[i].requiredNmbOfOperations + ", ", false);
+
+            //AddToOutput(calcObjBitInt[i].attackAtThisValue + ", ", false);
         }
-        AddToOutput("\n\nRequired subtractive operations: ");
+        AddToOutput("\n==================:: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
+        {
+            if (calcObjBitInt[i].DidHitZero)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
+            //AddToOutput(calcObjBitInt[i].attackAtThisValue + ", ", false);
+        }
+        AddToOutput("\n\n==================:: ");
         //m
-        for (int i = 0; i < calcObjs.Count; i++)
+        for (int i = 0; i < calcObjBitInt.Count; i++)
         {
-            AddToOutput(calcObjs[i].requiredNmbOfOperations + ", ", false);
+            if (calcObjBitInt[i].remainder == 1)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
         }
-        AddToOutput("\n\nLowest possible remainder: ");
-        for (int i = 0; i < calcObjs.Count; i++)
+        AddToOutput("\n\n==================: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
         {
-            AddToOutput(calcObjs[i].remainder + ", ", false);
+            if (calcObjBitInt[i].remainder == 2)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
         }
-        AddToOutput("\n\nDid hit a perfect zero?:  ", true);
-        for (int i = 0; i < calcObjs.Count; i++)
+        AddToOutput("\n\n==================: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
         {
-            AddToOutput(calcObjs[i].DidHitZero + ", ", false);
+            if (calcObjBitInt[i].remainder == 3)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
         }
-        AddToOutput("\n\nSubtraction chain:  ", true);
-        for (int i = 0; i < calcObjs.Count; i++)
+        AddToOutput("\n\n==================: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
         {
-            AddToOutput("Did hit zero = " + calcObjs[i].DidHitZero, true);
-            AddToOutput(calcObjs[i].calculationRecord + "\n", true);
-        } */
+            if (calcObjBitInt[i].remainder == 4)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
+        }
+        AddToOutput("\n\n==================: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
+        {
+            if (calcObjBitInt[i].remainder == 5)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
+        }
+        AddToOutput("\n\n==================: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
+        {
+            if (calcObjBitInt[i].remainder == 6)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
+        }
+        AddToOutput("\n\n==================: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
+        {
+            if (calcObjBitInt[i].remainder == 7)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
+        }
+        AddToOutput("\n\n==================: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
+        {
+            if (calcObjBitInt[i].remainder == 8)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
+        }
+        AddToOutput("\n\n==================: ");
+        for (int i = 0; i < calcObjBitInt.Count; i++)
+        {
+            if (calcObjBitInt[i].remainder == 9)
+            {
+                AddToOutput(calcObjBitInt[i].numberOfDigits + ", ", false);
+            }
+        }
+        /*       AddToOutput("\n\nLowest possible remainder: ");
+               for (int i = 0; i < calcObjs.Count; i++)
+               {
+                   AddToOutput(calcObjs[i].remainder + ", ", false);
+               }
+               AddToOutput("\n\nDid hit a perfect zero?:  ", true);
+               for (int i = 0; i < calcObjs.Count; i++)
+               {
+                   AddToOutput(calcObjs[i].DidHitZero + ", ", false);
+               }
+               AddToOutput("\n\nSubtraction chain:  ", true);
+               for (int i = 0; i < calcObjs.Count; i++)
+               {
+                   AddToOutput("Did hit zero = " + calcObjs[i].DidHitZero, true);
+                   AddToOutput(calcObjs[i].calculationRecord + "\n", true);
+               } */
     }
 
     public void AddToOutput(string str, bool linebreak = true)

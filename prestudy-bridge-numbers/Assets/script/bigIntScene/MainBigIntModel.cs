@@ -31,8 +31,8 @@ public class MainBigIntModel : MonoBehaviour
         for (int i = 0; i < loop; i++)
         {
             //curr values to chop down
-            BigInteger currBigIntStartVal = getBigInt(constants.str_Pi, i);
-            BigInteger currBigIntStopVal = getBigInt(constants.str_E, i);
+            BigInteger currBigIntStartVal = getBigInt(constants.str_E, i);
+            BigInteger currBigIntStopVal = getBigInt(constants.kinchin, i);
             Debug.Log("currBigIntStartVal: " + currBigIntStartVal);
 
             //setup CalcObj
@@ -42,6 +42,7 @@ public class MainBigIntModel : MonoBehaviour
             calcObj.kindOfCalculation = "reducing from top";
             calcObj.attackAtThisValue = currBigIntStartVal;
             calcObj.calculationRecord = currBigIntStartVal.ToString();
+            calcObj.numberOfDigits = i + 1;
 
             ListCalcObjectsBigInt.Add(calcObj);
 
@@ -49,52 +50,56 @@ public class MainBigIntModel : MonoBehaviour
             long escaper = 0;
             long iter = 0;
 
+            BigInteger firstVal = currBigIntStartVal;
+            BigInteger attackingVal = currBigIntStopVal;
+
             while (true)
             {
                 iter++;
 
-                /*                 firstVal -= attackingVal;
-                                //Debug.Log("firstval: " + firstVal + " attackingval; " + attackingVal);
+                firstVal -= attackingVal;
+                //Debug.Log("firstval: " + firstVal + " attackingval; " + attackingVal);
 
-                                calcObj.calculationRecord += "-" + attackingVal.ToString();
+                calcObj.calculationRecord += "-" + attackingVal.ToString();
 
-                                if (firstVal == 0)
-                                {
-                                    Debug.Log("did hit zero");
-                                    //did hit zero
-                                    calcObj.DidHitZero = true;
-                                    calcObj.remainder = firstVal;
-                                    calcObj.requiredNmbOfOperations = iter;
-                                    break;
-                                }
+                if (firstVal == 0)
+                {
+                    Debug.Log("did hit zero");
+                    //did hit zero
+                    calcObj.DidHitZero = true;
+                    calcObj.remainder = firstVal;
+                    calcObj.requiredNmbOfOperations = iter;
+                    break;
+                }
 
-                                if (firstVal < 0)
-                                {
-                                    Debug.Log("did overshoot");
-                                    //did overshoot
-                                    calcObj.DidHitZero = false;
-                                    calcObj.remainder = firstVal + attackingVal;
-                                    calcObj.requiredNmbOfOperations = iter - 1;
-                                    calcObj.calculationRecord += "+" + attackingVal.ToString();
-                                    break;
-                                }
+                if (firstVal < 0)
+                {
+                    Debug.Log("did overshoot");
+                    //did overshoot
+                    calcObj.DidHitZero = false;
+                    calcObj.remainder = firstVal + attackingVal;
+                    calcObj.requiredNmbOfOperations = iter - 1;
+                    calcObj.calculationRecord += "+" + attackingVal.ToString();
+                    break;
+                }
 
-                                while (attackingVal > firstVal)
-                                {
-                                    attackingVal = reduceNumberFromTop(attackingVal); // /= 10;
-                                }
+                while (attackingVal > firstVal)
+                {
+                    attackingVal = reduceNumberFromTop(attackingVal); // /= 10;
+                    //attackingVal /= 10;
+                }
 
-                                if (attackingVal == 0)
-                                {
-                                    //nothing more to attack with
-                                    calcObj.DidHitZero = false;
-                                    calcObj.remainder = firstVal;
-                                    calcObj.requiredNmbOfOperations = iter;
-                                    break;
-                                } */
+                if (attackingVal == 0)
+                {
+                    //nothing more to attack with
+                    calcObj.DidHitZero = false;
+                    calcObj.remainder = firstVal;
+                    calcObj.requiredNmbOfOperations = iter;
+                    break;
+                } /**/
 
                 escaper++;
-                if (escaper > 100)
+                if (escaper > 2000)
                 {
                     Debug.Log("did use escaper for this while loop");
                     break;
@@ -104,7 +109,21 @@ public class MainBigIntModel : MonoBehaviour
             mainBigIntInterface.AddOutputTopCalc(ListCalcObjectsBigInt);
         }
     }
-
+    private BigInteger reduceNumberFromTop(BigInteger lNmb)
+    {
+        BigInteger returnNmb;
+        string strlNmb = lNmb.ToString();
+        if (strlNmb.Length > 1)
+        {
+            strlNmb = strlNmb.Substring(1, strlNmb.Length - 1);
+            returnNmb = BigInteger.Parse(strlNmb);
+        }
+        else
+        {
+            returnNmb = 0;
+        }
+        return returnNmb;
+    }
     private BigInteger getBigInt(string strConstant, int atIndex)
     {
         string strBigInt = strConstant.Substring(0, atIndex + 1);
