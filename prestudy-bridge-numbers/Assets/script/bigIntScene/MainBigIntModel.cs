@@ -31,8 +31,8 @@ public class MainBigIntModel : MonoBehaviour
         for (int i = 0; i < loop; i++)
         {
             //curr values to chop down
-            BigInteger currBigIntStartVal = getBigInt(constants.str_E, i);
-            BigInteger currBigIntStopVal = getBigInt(constants.kinchin, i);
+            BigInteger currBigIntStartVal = getBigInt(constants.str_Pi, i);
+            BigInteger currBigIntStopVal = getBigInt(constants.str_E, i);
             Debug.Log("currBigIntStartVal: " + currBigIntStartVal);
 
             //setup CalcObj
@@ -56,6 +56,12 @@ public class MainBigIntModel : MonoBehaviour
             while (true)
             {
                 iter++;
+
+                while (attackingVal > firstVal)
+                {
+                    attackingVal = reduceNumberFromTop(attackingVal); // /= 10;
+                    //attackingVal /= 10;
+                }
 
                 firstVal -= attackingVal;
                 //Debug.Log("firstval: " + firstVal + " attackingval; " + attackingVal);
@@ -83,11 +89,7 @@ public class MainBigIntModel : MonoBehaviour
                     break;
                 }
 
-                while (attackingVal > firstVal)
-                {
-                    attackingVal = reduceNumberFromTop(attackingVal); // /= 10;
-                    //attackingVal /= 10;
-                }
+                
 
                 if (attackingVal == 0)
                 {
@@ -96,7 +98,7 @@ public class MainBigIntModel : MonoBehaviour
                     calcObj.remainder = firstVal;
                     calcObj.requiredNmbOfOperations = iter;
                     break;
-                } /**/
+                } 
 
                 escaper++;
                 if (escaper > 2000)
@@ -127,7 +129,7 @@ public class MainBigIntModel : MonoBehaviour
     private BigInteger getBigInt(string strConstant, int atIndex)
     {
         string strBigInt = strConstant.Substring(0, atIndex + 1);
-        Debug.Log(strBigInt);
+        //Debug.Log(strBigInt);
         BigInteger bigInteger = BigInteger.Parse(strBigInt);
         return bigInteger;
     }
