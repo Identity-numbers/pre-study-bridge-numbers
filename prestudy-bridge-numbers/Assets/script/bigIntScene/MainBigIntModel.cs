@@ -8,9 +8,65 @@ public class MainBigIntModel : MonoBehaviour
     public MainBigIntInterface mainBigIntInterface;
     public GameObject prefabBigInt;
     public Constants constants;
-
     public List<CalcObjBitInt> ListCalcObjectsBigInt = new List<CalcObjBitInt>();
 
+    public List<string> ListOfConstants = new List<string>();
+
+    private void getListOfConstants()
+    {
+        ListOfConstants.Add(constants.BackhouseConstant);
+        ListOfConstants.Add(constants.Catalan);
+        ListOfConstants.Add(constants.Copeland_Erdos_constant);
+        ListOfConstants.Add(constants.ExpE);
+        ListOfConstants.Add(constants.EulerConstant);
+        ListOfConstants.Add(constants.Exp2);
+        ListOfConstants.Add(constants.ExpGamma);
+        ListOfConstants.Add(constants.ExpInvertE);
+        ListOfConstants.Add(constants.ExpPi);
+        ListOfConstants.Add(constants.ExpPiDiv4);
+        ListOfConstants.Add(constants.expPiMinusPi);
+        ListOfConstants.Add(constants.FeigenBaumDelta);
+        ListOfConstants.Add(constants.goldenRatio);
+        ListOfConstants.Add(constants.inverseLog2);
+        ListOfConstants.Add(constants.kinchin);
+        ListOfConstants.Add(constants.str_E);
+        ListOfConstants.Add(constants.str_Pi);
+        ListOfConstants.Add(constants.str_sQrt2);
+        ListOfConstants.Add(constants.str_sQrt3);
+        ListOfConstants.Add(constants.This_number_exp2_7div2);
+        /**/
+    }
+
+    public void RunFunc()
+    {
+        //Debug.Log("start called : ");
+        //fill list with constants
+        getListOfConstants();
+
+        //Debug.Log("constant list : " + ListOfConstants.Count);
+
+        //CleanCalcObj();
+
+        //loop here for massive testing
+        string hitVal = "0";
+
+        for (int i = 0; i < ListOfConstants.Count; i++)
+        {
+            for (int j = 0; j < ListOfConstants.Count; j++)
+            {
+                if (i != j)
+                {
+                    Debug.Log("inside loop");
+                    string startV = ListOfConstants[i];
+                    string stopV = ListOfConstants[j];
+                    //Debug.Log("This is times: " + i + " " + j);
+                    topCalcBigInt(hitVal, startV, stopV);
+                }
+            }
+        }
+
+        mainBigIntInterface.WriteString();
+    }
     private void CleanCalcObj()
     {
         for (int i = 0; i < ListCalcObjectsBigInt.Count; i++)
@@ -20,9 +76,29 @@ public class MainBigIntModel : MonoBehaviour
         ListCalcObjectsBigInt.Clear();
     }
 
-    public void topCalcBigInt()
+    public void topCalcBigInt(string hitVal, string ConstantStartVal, string ConstantStopVal)
     {
+        //reset old stuff
         CleanCalcObj();
+
+        //mainBigIntInterface.AddToOutput("\n\n*****************************************************************************");
+        //mainBigIntInterface.AddToOutput("                                                                     ");
+        if (hitVal.Length > 1)
+        {
+            //BigInteger HitThisValue = 
+            //mainBigIntInterface.AddToOutput("Hitval     : " + hitVal.Substring(0, 20));
+        }
+        else
+        {
+            //BigInteger HitThisValue = 0;
+            //mainBigIntInterface.AddToOutput("Hitval     : " + hitVal);
+        }
+       // mainBigIntInterface.AddToOutput("Start Value: " + ConstantStartVal.Substring(0, 20));
+        //mainBigIntInterface.AddToOutput("Stop Value : " + ConstantStopVal.Substring(0, 20));
+        //mainBigIntInterface.AddToOutput("                                                                     ");
+        //mainBigIntInterface.AddToOutput("*****************************************************************************");
+
+        //BigInteger HitThisValue = 
 
         //get iteration
         int loop = mainBigIntInterface.getLoops();
@@ -31,9 +107,9 @@ public class MainBigIntModel : MonoBehaviour
         for (int i = 0; i < loop; i++)
         {
             //curr values to chop down
-            BigInteger currBigIntStartVal = getBigInt(constants.str_Pi, i);
-            BigInteger currBigIntStopVal = getBigInt(constants.str_E, i);
-            Debug.Log("currBigIntStartVal: " + currBigIntStartVal);
+            BigInteger currBigIntStartVal = getBigInt(ConstantStartVal, i);
+            BigInteger currBigIntStopVal = getBigInt(ConstantStopVal, i);
+            //            Debug.Log("currBigIntStartVal: " + currBigIntStartVal);
 
             //setup CalcObj
             GameObject go = Instantiate(prefabBigInt, new UnityEngine.Vector3(0, 0, 0), UnityEngine.Quaternion.identity);
@@ -64,9 +140,6 @@ public class MainBigIntModel : MonoBehaviour
                 }
 
                 firstVal -= attackingVal;
-                //Debug.Log("firstval: " + firstVal + " attackingval; " + attackingVal);
-
-                calcObj.calculationRecord += "-" + attackingVal.ToString();
 
                 if (firstVal == 0)
                 {
@@ -75,6 +148,7 @@ public class MainBigIntModel : MonoBehaviour
                     calcObj.DidHitZero = true;
                     calcObj.remainder = firstVal;
                     calcObj.requiredNmbOfOperations = iter;
+                    calcObj.calculationRecord += "-" + attackingVal.ToString();
                     break;
                 }
 
@@ -85,11 +159,13 @@ public class MainBigIntModel : MonoBehaviour
                     calcObj.DidHitZero = false;
                     calcObj.remainder = firstVal + attackingVal;
                     calcObj.requiredNmbOfOperations = iter - 1;
-                    calcObj.calculationRecord += "+" + attackingVal.ToString();
+                    //calcObj.calculationRecord += "+" + attackingVal.ToString();
                     break;
                 }
-
-                
+                else
+                {
+                    calcObj.calculationRecord += "-" + attackingVal.ToString();
+                }
 
                 if (attackingVal == 0)
                 {
@@ -98,18 +174,19 @@ public class MainBigIntModel : MonoBehaviour
                     calcObj.remainder = firstVal;
                     calcObj.requiredNmbOfOperations = iter;
                     break;
-                } 
+                }
 
                 escaper++;
-                if (escaper > 2000)
+                if (escaper > 1000)
                 {
-                    Debug.Log("did use escaper for this while loop");
+                    //Debug.Log("did use escaper for this while loop with limig: 2000");
                     break;
                 }
             }
 
-            mainBigIntInterface.AddOutputTopCalc(ListCalcObjectsBigInt);
         }
+        mainBigIntInterface.AddOutputTopCalc(ListCalcObjectsBigInt);
+        
     }
     private BigInteger reduceNumberFromTop(BigInteger lNmb)
     {

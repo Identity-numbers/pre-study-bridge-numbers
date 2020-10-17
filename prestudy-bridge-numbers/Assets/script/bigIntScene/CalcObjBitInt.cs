@@ -17,5 +17,6 @@ public class CalcObjBitInt : MonoBehaviour
     public BigInteger requiredNmbOfOperations;
     //did it hit zero? perhaps remainder tells?
     public bool DidHitZero;
+    public bool DidOverShoot = false;
     public string calculationRecord;
 }
