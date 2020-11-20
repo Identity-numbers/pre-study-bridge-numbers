@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a055ccc771447efb64d466a0179ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textAsset: {fileID: 0}
+  textAsset: {fileID: 4900000, guid: 005b90c8463124ad895bc825821f4196, type: 3}
 --- !u!1 &781695481
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,13 +293,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalCount: 123456792
   speedOfLight: 299792448
-  PlancksConstant: 6.626070022583008
+  plancksConstant: 6.626070022583008
   vaccumelectrpermitt: 8.854187965393066
   vaccummagneticperme: 1.2566370964050293
   charImpedanceVaccum: 376.7303161621094
   elementaryCharge: 1.6021766662597656
   hyperfineTransFreq: 9192631296
-  AvogradosConstant: 6.022140979766846
+  avogradosConstant: 6.022140979766846
+  goldenRation: 1.6180340051651
+  cubeRootOfTwo: 1.2599210739135742
+  cubeRootOfThree: 1.4422495365142822
+  wallisConstant: 2.0945515632629395
+  eulersNumbers: 2.7182817459106445
+  sophomoresDream: 0.7834305167198181
+  sophomoreDream2: 1.2912859916687012
+  lemniscate: 2.6220574378967285
+  protonMass: 1.6726219654083252
+  neutronMass: 1.6749274730682373
+  bohrRadius: 5.29177188873291
+  fermiCoupling: 1.1663787
+  hartreeEnergy: 4.359744548797607
+  quantumOfCirculation: 3.6369476318359375
+  rydbergConstant: 10973732
+  atomicMassConstant: 1.6605390310287476
+  faradayConstant: 96485.328125
+  molarGasConstant: 8.314462661743164
+  molarMassConstant: 1
+  stefanBoltzmannConstant: 5.670374393463135
+  molarMassofCarbon: 12
+  molarPlanckConstant: 3.9903128147125244
+  secondRadiationConstant: 1.4387768507003784
 --- !u!1 &870299485
 GameObject:
   m_ObjectHideFlags: 0

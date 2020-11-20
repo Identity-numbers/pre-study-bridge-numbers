@@ -40,11 +40,11 @@ public class HModel : MonoBehaviour
 
         calcObj.baseNumber = baseValue;
         calcObj.powerNumber = powerValue;
-        calcObj.calcMethod = "power smaller than one(1)";
+        calcObj.calcMethod = "power divide by Wodsworth inverse (10/3) while pow value > 1";
 
         while (powerValue > 1)
         {
-            powerValue /= 10F;
+            powerValue /= 10/3F;
         }
         calcObj.modPowNmb = powerValue;
 

@@ -15,13 +15,14 @@ public class HInterface : MonoBehaviour
     {
         for (int i = 0; i < hCalcObj.Count; i++)
         {
-            AddToOutput("========= CalcMethod: " + hCalcObj[i].calcMethod);
-            AddToOutput("Base Number: " + hCalcObj[i].baseNumber);
-            AddToOutput("Pow Number : " + hCalcObj[i].powerNumber);
-            AddToOutput("Mod Pow Nmb: " + hCalcObj[i].modPowNmb);
-            AddToOutput("Before Sqrt: " + hCalcObj[i].beforeSqrt);
-            AddToOutput("Answer     : " + hCalcObj[i].answer);
-            AddToOutput("\n");
+            //AddToOutput("========= CalcMethod: " + hCalcObj[i].calcMethod);
+            //AddToOutput("Base Number: " + hCalcObj[i].baseNumber);
+            //AddToOutput("Pow Number : " + hCalcObj[i].powerNumber);
+            //AddToOutput("Mod Pow Nmb: " + hCalcObj[i].modPowNmb);
+            //AddToOutput("Before Sqrt: " + hCalcObj[i].beforeSqrt);
+            //AddToOutput("Answer     : " + hCalcObj[i].answer);
+            AddToOutput(hCalcObj[i].answer.ToString());
+            //AddToOutput("\n");
         }
     }
 
@@ -44,7 +45,7 @@ public class HInterface : MonoBehaviour
 
     public void WriteString()
     {
-        string path = "Assets/TextAssets/houtText.txt";
+        string path = "Assets/TextAssets/hwodsworthoutTextShort.txt";
 
         StreamWriter writer = new StreamWriter(path, true);
         writer.WriteLine(outPutString);

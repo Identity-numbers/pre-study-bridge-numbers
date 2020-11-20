@@ -9,6 +9,10 @@ public class MainInterface : MonoBehaviour
     public InputField input_StartValue;
     public InputField input_StopValue;
 
+    //Top calc Frac input
+    public InputField inputRFrac_StartValue;
+    public InputField inputRFrac_StopValue;
+
     //Top calc input
     public InputField inputR_StartValue;
     public InputField inputR_StopValue;
@@ -54,6 +58,7 @@ public class MainInterface : MonoBehaviour
         for (int i = 0; i < calcObjs.Count; i++)
         {
             AddToOutput("Did hit zero = " + calcObjs[i].DidHitZero, true);
+            AddToOutput("Number of iterations = " + calcObjs[i].requiredNmbOfOperations + ", ", true);
             AddToOutput(calcObjs[i].calculationRecord + "\n", true);
         }
     }
@@ -88,6 +93,26 @@ public class MainInterface : MonoBehaviour
 
         return new long[] { startVal, stopVal };
     }
+    
+    public long[] ReturnStartAndStopTopCalcFrac()
+    {
+        //check if startvalue is larger than stopvalue, stop or not?
+        long startVal = long.Parse(inputR_StartValue.text);
+        long stopVal = long.Parse(inputR_StopValue.text);
+
+        //check input
+        if (startVal < 0) { startVal = 0; }
+        if (startVal >= stopVal) { stopVal = startVal + 1; }
+
+        //re-add checked input
+        inputRFrac_StartValue.text = startVal.ToString();
+        inputRFrac_StopValue.text = stopVal.ToString();
+
+        Debug.Log("startVal: " + startVal);
+
+        return new long[] { startVal, stopVal };
+    }
+
     public long[] ReturnStartAndStopTopCalc()
     {
         //check if startvalue is larger than stopvalue, stop or not?
